@@ -70,6 +70,35 @@
         animation: octocat-wave 560ms ease-in-out;
       }
     }
+        .skeleton {
+          position: relative;
+          max-width: 420px;
+          min-width: 280px;
+          height: 60px;
+          margin: 20px;
+          border-radius: 10px;
+          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+          background: linear-gradient(90deg, rgb(2 6 23), rgb(41, 41, 51));
+          background-size: 400% 400%;
+          animation: skeletonAnimation 0.5s ease-in-out infinite;
+        }
+    
+        @keyframes skeletonAnimation {
+          0% {
+            background-position: 0% 50%;
+          }
+    
+          50% {
+            background-position: 100% 50%;
+    
+          }
+    
+          100% {
+            background-position: 0% 50%;
+    
+          }
+        }
+   
 @layer base{
   .text-base{
     font-family: 'Inter', sans-serif;

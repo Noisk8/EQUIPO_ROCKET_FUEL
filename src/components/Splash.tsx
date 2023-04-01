@@ -4,7 +4,7 @@ import Starfield from "./Starfield";
 
 
 function Splash(){
-  const astronautImage = "/images/tao.png";
+  const astronautImage = "/images/miau.png";
   const widths = [400, 800]; // Define desired widths here.
   const sizes = "(max-width: 800px) 400px, 800px"; // Define sizes attribute here.
 

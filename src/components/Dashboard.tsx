@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { DashboardItem } from "./DashboardItem";
+import { DashboardItemSkeleton } from "./DashboardSkeleton";
 
 const defis = [
   {
@@ -76,35 +77,85 @@ const defis = [
   },
 ];
 
+const getContractTVL = async (link: string) => {
+  let result: any = await fetch(link);
+  let data = await result.json();
+  return data.currentChainTvls;
+};
+
 function Dashboard() {
+  const [data, setData] = React.useState<any>(new Array(defis.length).fill(0));
+  const [loaded, setloaded] = React.useState(false);
+
+  useEffect(() => {
+    const links = defis.map((defi) => defi.api);
+    Promise.allSettled(links.map((link) => getContractTVL(link))).then(
+      (results) => {
+        let values = results.map((result: any) => {
+          let TVLs = result.value;
+          console.log(TVLs);
+
+          const TotalTVL: any = Object.values(TVLs).reduce(
+            (accum: any, currentValue: any) => accum + currentValue,
+            0
+          );
+          return Math.floor(TotalTVL);
+        });
+
+        const newDefis = defis.map((defi, index) => {
+          let newDefi = { ...defi, TVL: values[index] };
+          return newDefi;
+        });
+        setData(newDefis);
+        setloaded(true);
+      }
+    );
+  }, []);
+
   return (
-    <section id="Dashboard" className="bg-slate-900  grid content-center">
+    <section id="Dashboard" className="bg-slate-950  grid content-center">
       <div className="p-20">
         <div className="text-base border-slate-300 border-[1px] rounded-xl text-white flex flex-col w-5/6 mx-auto">
           <table className="">
-            <thead>
-              <tr className="h-12">
-                <th className="text-start px-5">
-                  <span>Name</span>
-                </th>
-                <th className="Url">
-                  <span>Url</span>
-                </th>
-                <th className="TVL">
-                  <span>TVL</span>
-                </th>
-              </tr>
-            </thead>
+            {loaded ? (
+              <thead>
+                <tr className="h-12">
+                  <th className="text-start px-5">
+                    <span>Name</span>
+                  </th>
+                  <th >
+                    <span>Url</span>
+                  </th>
+                  <th >
+                    <span>TVL</span>
+                  </th>
+                </tr>
+              </thead>
+            ) : (
+              <thead>
+                <tr className="h-12 skeleton">
+                  <th></th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+            )}
+
             <tbody>
-              {defis.map((item, index) => (
-                <DashboardItem
-                  index={index}
-                  defi={item.name}
-                  image={item.img}
-                  url={item.url}
-                  api={item.api}
-                />
-              ))}
+              {loaded
+                ? data.map((item: any, index: any) => (
+                    <DashboardItem
+                      key={index}
+                      index={index}
+                      defi={item.name}
+                      image={item.img}
+                      url={item.url}
+                      TVL={item.TVL}
+                    />
+                  ))
+                : data.map((item: any, index: any) => (
+                    <DashboardItemSkeleton  key={index}/>
+                  ))}
             </tbody>
           </table>
         </div>

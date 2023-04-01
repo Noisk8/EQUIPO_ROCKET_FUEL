@@ -1,34 +1,9 @@
 import React from "react";
 import Image from "next/image";
 
-function DashboardItem({ defi, image, url, api , index}: any) {
-  const [data, setData] = React.useState(0);
+function DashboardItem({ defi, image, url, TVL , index}: any) {
   let dollarUSLocale = Intl.NumberFormat("en-US");
 
-
-//   const callAll = (links: Array<string>) => {
-//     const results = Promise.all(links.map((link) => fetchData(link)));
-//     resturn results
-//   }
-
-  React.useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch(api);
-        const data = await response.json();
-        let value = 0;
-        Object.values(data.currentChainTvls).map((element: any) => {
-          value += element;
-        });
-        value = Math.floor(value)
-        setData(value);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-
-    fetchData();
-  }, []);
   return (
     <tr className="border-[1px] h-16 border-slate-500 ">
       <td className="h-full text-center">
@@ -48,7 +23,7 @@ function DashboardItem({ defi, image, url, api , index}: any) {
         <span>{url}</span>
       </td>
       <td className="h-full text-center">
-        <span>{dollarUSLocale.format(data)}</span>
+        <span>{dollarUSLocale.format(TVL)}</span>
       </td>
     </tr>
   );
