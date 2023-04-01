@@ -6,8 +6,8 @@ function DashboardItem({ defi, image, url, TVL , index}: any) {
 
   return (
     <tr className="border-[1px] h-16 border-slate-500 ">
-      <td className="h-full text-center">
-        <div className="flex flex-row gap-5 px-5">
+      <td className=" fixed-column h-full text-center">
+        <div className="flex flex-row gap-3  md:gap-5 px-5">
           <span className="grid content-center">{index + 1}.</span>
           <Image
             className="rounded-full"
@@ -19,10 +19,10 @@ function DashboardItem({ defi, image, url, TVL , index}: any) {
           <span className="grid content-center">{defi}</span>
         </div>
       </td>
-      <td className="h-full text-center">
+      <td className="h-full min-w-[200px] text-center">
         <span>{url}</span>
       </td>
-      <td className="h-full text-center">
+      <td className="h-full min-w-[200px] text-center">
         <span>{dollarUSLocale.format(TVL)}</span>
       </td>
     </tr>

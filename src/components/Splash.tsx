@@ -9,15 +9,16 @@ function Splash(){
   const sizes = "(max-width: 800px) 400px, 800px"; // Define sizes attribute here.
 
   return (
+
+
     <div className="relative h-full bg-black">
       <Starfield />
       <div
         id="splash-bg-fallback"
         className="absolute inset-0 hidden opacity-40"
-      >
-      </div>
-      <div className="relative grid h-full place-items-center ">
-        <div className="flex flex-col gap-2 self-end sm:gap-4 ">
+      ></div>
+      <div className="relative grid h-full place-items-center sm:grid-cols-2 ">
+        <div className="flex flex-col gap-2 self-end sm:gap-4 sm:self-auto sm:justify-self-end">
           <h1>Icon</h1>
           <div className="gradient-text text-center font-extrabold tracking-tighter text-6xl sm:text-8xl">
             EQUIPO
@@ -25,10 +26,7 @@ function Splash(){
             <br />
           </div>
         </div>
-        <div
-          id="astronaut"
-          className="w-2/3 max-w-3xl self-start "
-        >
+        <div id="astronaut" className="sm:w-10/12 sm:self-auto sm:justify-self-start w-2/3 max-w-3xl self-start ">
           <AstronautImage
             className="object-cover w-full h-full"
             src={astronautImage}

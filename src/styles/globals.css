@@ -24,6 +24,18 @@
   animation: float linear 2.5s infinite alternate;
 }
 
+.fixed-column {
+  position: sticky;
+  left: 0;
+  z-index: 10;
+  background-color: rgb(2 6 23);
+}
+
+.tableW {
+
+  max-width: calc(100vh -32px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   #astronaut {
     @apply animate-none;
@@ -39,74 +51,75 @@
 }
 
 
-    a:hover .octo-arm {
-      animation: octocat-wave 560ms ease-in-out;
-    }
-  
-    @keyframes octocat-wave {
-  
-      0%,
-      100% {
-        transform: rotate(0);
-      }
-  
-      20%,
-      60% {
-        transform: rotate(-25deg);
-      }
-  
-      40%,
-      80% {
-        transform: rotate(10deg);
-      }
-    }
-  
-    @media (max-width: 500px) {
-      a:hover .octo-arm {
-        animation: none;
-      }
-  
-      a .octo-arm {
-        animation: octocat-wave 560ms ease-in-out;
-      }
-    }
-        .skeleton {
-          position: relative;
-          max-width: 420px;
-          min-width: 280px;
-          height: 60px;
-          margin: 20px;
-          border-radius: 10px;
-          box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-          background: linear-gradient(90deg, rgb(2 6 23), rgb(41, 41, 51));
-          background-size: 400% 400%;
-          animation: skeletonAnimation 0.5s ease-in-out infinite;
-        }
-    
-        @keyframes skeletonAnimation {
-          0% {
-            background-position: 0% 50%;
-          }
-    
-          50% {
-            background-position: 100% 50%;
-    
-          }
-    
-          100% {
-            background-position: 0% 50%;
-    
-          }
-        }
-   
-@layer base{
-  .text-base{
+a:hover .octo-arm {
+  animation: octocat-wave 560ms ease-in-out;
+}
+
+@keyframes octocat-wave {
+
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+
+  20%,
+  60% {
+    transform: rotate(-25deg);
+  }
+
+  40%,
+  80% {
+    transform: rotate(10deg);
+  }
+}
+
+@media (max-width: 500px) {
+  a:hover .octo-arm {
+    animation: none;
+  }
+
+  a .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+}
+
+.skeleton {
+  position: relative;
+  max-width: 420px;
+  min-width: 280px;
+  height: 60px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  background: linear-gradient(90deg, rgb(2 6 23), rgb(41, 41, 51));
+  background-size: 400% 400%;
+  animation: skeletonAnimation 0.5s ease-in-out infinite;
+}
+
+@keyframes skeletonAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+
+  }
+
+  100% {
+    background-position: 0% 50%;
+
+  }
+}
+
+@layer base {
+  .text-base {
     font-family: 'Inter', sans-serif;
   }
 }
 
-@layer components{
-.btn {
+@layer components {
+  .btn {
     @apply transition-colors duration-200;
     @apply hover: text-secondary;
     @apply focus: outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-transparent;
@@ -117,4 +130,3 @@
     @apply bg-gradient-to-br from-indigo-500 via-fuchsia-500 to-pink-500;
   }
 }
-

@@ -113,21 +113,26 @@ function Dashboard() {
   }, []);
 
   return (
-    <section id="Dashboard" className="bg-slate-950  grid content-center">
+    <section id="Dashboard" className="bg-slate-950 grid content-center">
       <div className="p-2 md:p-20">
-        <h1 className="text-white text-center text-xl  md:text-8xl md:p-10"  >Defi's Dashboard</h1>
-        <div className="text-base overflow-x-auto border-slate-300 border-[1px] rounded-xl text-white flex flex-col w-5/6 mx-auto">
-          <table className="overflow-x-auto w-full table-fixed">
+        <h1 className="text-white text-center text-xl md:text-8xl md:p-10">
+          Defi's Dashboard
+        </h1>
+        <div className="text-base tableW overflow-x-auto border-slate-300 border-[1px] rounded-xl text-white flex flex-col mx-auto">
+          <table className=" w-full overflow-x-scroll table-fixed">
             {loaded ? (
               <thead>
                 <tr className="h-12">
-                  <th className="text-start px-5">
+                  <th
+                    scope="col"
+                    className="fixed-column text-start px-5 w-48 "
+                  >
                     <span>Name</span>
                   </th>
-                  <th >
+                  <th scope="col" className="w-52">
                     <span>Url</span>
                   </th>
-                  <th >
+                  <th scope="col" className="w-36">
                     <span>TVL</span>
                   </th>
                 </tr>
@@ -135,9 +140,9 @@ function Dashboard() {
             ) : (
               <thead>
                 <tr className="h-12 skeleton">
-                  <th></th>
-                  <th></th>
-                  <th></th>
+                  <th className="min-w-[200px]"></th>
+                  <th className="min-w-[200px]"></th>
+                  <th className="min-w-[200px]"></th>
                 </tr>
               </thead>
             )}
@@ -155,7 +160,7 @@ function Dashboard() {
                     />
                   ))
                 : data.map((item: any, index: any) => (
-                    <DashboardItemSkeleton  key={index}/>
+                    <DashboardItemSkeleton key={index} />
                   ))}
             </tbody>
           </table>
