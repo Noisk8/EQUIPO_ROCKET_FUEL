@@ -114,9 +114,10 @@ function Dashboard() {
 
   return (
     <section id="Dashboard" className="bg-slate-950  grid content-center">
-      <div className="p-20">
-        <div className="text-base border-slate-300 border-[1px] rounded-xl text-white flex flex-col w-5/6 mx-auto">
-          <table className="">
+      <div className="p-2 md:p-20">
+        <h1 className="text-white text-center text-xl  md:text-8xl md:p-10"  >Defi's Dashboard</h1>
+        <div className="text-base overflow-x-auto border-slate-300 border-[1px] rounded-xl text-white flex flex-col w-5/6 mx-auto">
+          <table className="overflow-x-auto w-full table-fixed">
             {loaded ? (
               <thead>
                 <tr className="h-12">
