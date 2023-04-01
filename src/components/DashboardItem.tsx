@@ -1,8 +1,16 @@
 import React from "react";
 import Image from "next/image";
 
-function DashboardItem({ defi, image, url, api }: any) {
+function DashboardItem({ defi, image, url, api , index}: any) {
   const [data, setData] = React.useState(0);
+  let dollarUSLocale = Intl.NumberFormat("en-US");
+
+
+//   const callAll = (links: Array<string>) => {
+//     const results = Promise.all(links.map((link) => fetchData(link)));
+//     resturn results
+//   }
+
   React.useEffect(() => {
     const fetchData = async () => {
       try {
@@ -12,6 +20,7 @@ function DashboardItem({ defi, image, url, api }: any) {
         Object.values(data.currentChainTvls).map((element: any) => {
           value += element;
         });
+        value = Math.floor(value)
         setData(value);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -21,21 +30,25 @@ function DashboardItem({ defi, image, url, api }: any) {
     fetchData();
   }, []);
   return (
-    <tr>
-      <td>
-        <Image
-          src={image}
-          alt="An example image"
-          width={50}
-          height={30}
-        />
-        <span>{defi}</span>
+    <tr className="border-[1px] h-16 border-slate-500 ">
+      <td className="h-full text-center">
+        <div className="flex flex-row gap-5 px-5">
+          <span className="grid content-center">{index + 1}.</span>
+          <Image
+            className="rounded-full"
+            src={image}
+            alt="An example image"
+            width={36}
+            height={36}
+          />
+          <span className="grid content-center">{defi}</span>
+        </div>
       </td>
-      <td>
+      <td className="h-full text-center">
         <span>{url}</span>
       </td>
-      <td>
-        <span>{data}</span>
+      <td className="h-full text-center">
+        <span>{dollarUSLocale.format(data)}</span>
       </td>
     </tr>
   );
